@@ -1,0 +1,79 @@
+:root {
+  /* Baggrundslag */
+  --bg-base:     #080810;
+  --bg-surface:  #111119;
+  --bg-elevated: #1a1a25;
+  --bg-overlay:  #22222f;
+
+  /* Kanter */
+  --border-subtle:  rgba(255,255,255,0.04);
+  --border-default: rgba(255,255,255,0.08);
+  --border-strong:  rgba(255,255,255,0.14);
+
+  /* Accent / brand */
+  --accent:       #7c6ff7;
+  --accent-light: #a89df9;
+  --accent-dark:  #5a4fe0;
+  --accent-glow:  rgba(124, 111, 247, 0.25);
+
+  /* Tekst */
+  --text-primary:   #f0f0f8;
+  --text-secondary: #8888aa;
+  --text-muted:     #44445a;
+
+  /* Status */
+  --success: #4caf7d;
+  --error:   #e05555;
+  --warning: #f0a500;
+
+  /* Rating (guld) */
+  --rating:    #f5a623;
+  --rating-bg: rgba(245, 166, 35, 0.15);
+
+  /* Kategorifarver */
+  --cat-music:   #9b59b6;
+  --cat-film:    #3498db;
+  --cat-series:  #1abc9c;
+  --cat-games:   #2ecc71;
+  --cat-books:   #e67e22;
+  --cat-podcasts:#e91e8c;
+  --cat-escape:   #e74c3c;
+  --cat-concerts: #f39c12;
+
+  /* Typografi */
+  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+
+  /* Afstand (4px-grid) */
+  --sp-1: 4px;  --sp-2: 8px;   --sp-3: 12px;
+  --sp-4: 16px; --sp-5: 20px;  --sp-6: 24px;
+  --sp-8: 32px; --sp-10: 40px; --sp-12: 48px;
+
+  /* Hjørneradius */
+  --r-sm: 8px; --r-md: 12px; --r-lg: 16px;
+  --r-xl: 24px; --r-full: 9999px;
+
+  /* Skygger */
+  --shadow-sm: 0 2px 8px  rgba(0,0,0,0.35);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.45);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.55);
+  --shadow-accent: 0 4px 20px rgba(124,111,247,0.35);
+
+  /* Overgange */
+  --t-fast: 150ms ease;
+  --t-base: 250ms ease;
+  --t-slow: 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  /* App-layout */
+  --header-h: 56px;
+  --nav-h:    64px;
+  --safe-top:    env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg-base);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

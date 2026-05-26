@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#080810">
+  <meta name="description" content="Din personlige mediesamling">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Mediehylden">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <title>Mediehylden</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <div id="app">
+
+    <!-- Top-header — vises på alle sider -->
+    <header id="app-header">
+      <button id="back-btn" class="icon-btn hidden" aria-label="Gå tilbage">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+      </button>
+      <h1 id="page-title">Mediehylden</h1>
+      <div id="header-actions"></div>
+    </header>
+
+    <!-- Hovedindhold — views injiceres her af router -->
+    <main id="app-main">
+      <div class="loading-spinner">
+        <div class="spinner"></div>
+      </div>
+    </main>
+
+    <!-- Bottom navigation -->
+    <nav id="bottom-nav">
+      <a href="#home" class="nav-item" data-route="home">
+        <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        <span class="nav-label">Hjem</span>
+      </a>
+      <a href="#add" class="nav-item" data-route="add">
+        <div class="nav-add-btn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"/>
+            <line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+        </div>
+        <span class="nav-label">Tilføj</span>
+      </a>
+    </nav>
+
+  </div>
+
+  <!-- Toast-notifikationer -->
+  <div id="toast-container" aria-live="polite"></div>
+
+  <!-- Bottom sheet overlay -->
+  <div id="sheet-overlay" class="hidden"></div>
+  <div id="bottom-sheet" class="hidden">
+    <div class="sheet-handle"></div>
+    <div id="sheet-content"></div>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

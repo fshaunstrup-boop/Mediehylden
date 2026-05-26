@@ -1,0 +1,256 @@
+/* ── App-container ─────────────────────────────────────── */
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;          /* dynamic viewport height — respekterer tastatur */
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Header ────────────────────────────────────────────── */
+#app-header {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  height: var(--header-h);
+  padding: 0 var(--sp-4);
+  padding-top: var(--safe-top);
+  background: var(--bg-base);
+  border-bottom: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+#page-title {
+  flex: 1;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+/* ── Scrollbart indhold ────────────────────────────────── */
+#app-main {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+  overflow-anchor: none;   /* forhindrer browser scroll anchoring ved DOM-ændringer */
+  background: var(--bg-base);
+}
+
+/* ── Bottom navigation ─────────────────────────────────── */
+#bottom-nav {
+  display: flex;
+  height: calc(var(--nav-h) + var(--safe-bottom));
+  padding-bottom: var(--safe-bottom);
+  background: rgba(8, 8, 16, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  color: var(--text-muted);
+  transition: color var(--t-fast);
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.nav-item.active {
+  color: var(--accent);
+}
+
+.nav-item svg {
+  width: 24px;
+  height: 24px;
+}
+
+.nav-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+}
+
+.nav-add-btn {
+  width: 44px;
+  height: 44px;
+  background: var(--accent);
+  border-radius: var(--r-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  box-shadow: var(--shadow-accent);
+  transition: transform var(--t-fast), box-shadow var(--t-fast);
+}
+
+.nav-item:active .nav-add-btn {
+  transform: scale(0.92);
+  box-shadow: none;
+}
+
+/* ── Page-indhold padding ──────────────────────────────── */
+.page {
+  padding: var(--sp-4);
+  min-height: 100%;
+  animation: fadeSlideIn var(--t-base) both;
+}
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Grid til mediekort ────────────────────────────────── */
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-3);
+}
+
+.media-grid--square {
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-2);
+}
+
+/* ── Kategori-grid på forsiden ─────────────────────────── */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-3);
+}
+
+/* ── Sektionsoverskrift ────────────────────────────────── */
+.section-title {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-muted);
+  margin-bottom: var(--sp-3);
+  margin-top: var(--sp-5);
+}
+
+.section-title:first-child {
+  margin-top: 0;
+}
+
+/* ── Tom tilstand ──────────────────────────────────────── */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-4);
+  padding: var(--sp-12) var(--sp-6);
+  text-align: center;
+  min-height: 300px;
+}
+
+.empty-state-icon {
+  font-size: 56px;
+  line-height: 1;
+  opacity: 0.4;
+}
+
+.empty-state-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.empty-state-text {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  max-width: 260px;
+}
+
+/* ── Loading ───────────────────────────────────────────── */
+.loading-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+}
+
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--border-default);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Bottom sheet ──────────────────────────────────────── */
+#sheet-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 40;
+  opacity: 0;
+  transition: opacity var(--t-base);
+}
+
+#sheet-overlay.visible { opacity: 1; }
+
+#bottom-sheet {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(100%);
+  width: 100%;
+  max-width: 600px;
+  background: var(--bg-elevated);
+  border-radius: var(--r-xl) var(--r-xl) 0 0;
+  border: 1px solid var(--border-default);
+  border-bottom: none;
+  z-index: 50;
+  padding: var(--sp-3) var(--sp-4) var(--sp-6);
+  padding-bottom: calc(var(--sp-6) + var(--safe-bottom));
+  transition: transform var(--t-slow);
+  max-height: 85dvh;
+  overflow-y: auto;
+}
+
+#bottom-sheet.visible {
+  transform: translateX(-50%) translateY(0);
+}
+
+.sheet-handle {
+  width: 36px;
+  height: 4px;
+  border-radius: var(--r-full);
+  background: var(--border-strong);
+  margin: 0 auto var(--sp-5);
+}
+
+.hidden { display: none !important; }

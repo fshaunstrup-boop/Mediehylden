@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "mediehylden",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "--directory", "/Users/frederikhaunstrup/mediehylden", "8080"],
+      "port": 8080
+    }
+  ]
+}
