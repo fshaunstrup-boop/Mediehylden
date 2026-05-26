@@ -1,31 +1,34 @@
 // Service Worker — cacher app-shell for offline-brug
-const CACHE_NAME = 'mediehylden-v15';
+const CACHE_NAME = 'mediehylden-v16';
+
+// Udled base-sti automatisk (virker både lokalt og på GitHub Pages)
+const BASE = self.location.pathname.replace(/\/sw\.js$/, '');
 
 const STATIC_ASSETS = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/css/reset.css',
-  '/css/theme.css',
-  '/css/layout.css',
-  '/css/components.css',
-  '/js/app.js',
-  '/js/router.js',
-  '/js/db.js',
-  '/js/categories.js',
-  '/js/views/home.js',
-  '/js/views/collection.js',
-  '/js/views/form.js',
-  '/js/views/detail.js',
-  '/js/components/toast.js',
-  '/js/components/mediaCard.js',
-  '/js/components/ratingInput.js',
-  '/js/components/imagePicker.js',
-  '/js/components/sortBar.js',
-  '/js/components/categoryRatings.js',
-  '/js/components/trackRatings.js',
-  '/js/components/seasonRatings.js',
-  '/js/utils/scoring.js',
+  BASE + '/',
+  BASE + '/index.html',
+  BASE + '/manifest.json',
+  BASE + '/css/reset.css',
+  BASE + '/css/theme.css',
+  BASE + '/css/layout.css',
+  BASE + '/css/components.css',
+  BASE + '/js/app.js',
+  BASE + '/js/router.js',
+  BASE + '/js/db.js',
+  BASE + '/js/categories.js',
+  BASE + '/js/views/home.js',
+  BASE + '/js/views/collection.js',
+  BASE + '/js/views/form.js',
+  BASE + '/js/views/detail.js',
+  BASE + '/js/components/toast.js',
+  BASE + '/js/components/mediaCard.js',
+  BASE + '/js/components/ratingInput.js',
+  BASE + '/js/components/imagePicker.js',
+  BASE + '/js/components/sortBar.js',
+  BASE + '/js/components/categoryRatings.js',
+  BASE + '/js/components/trackRatings.js',
+  BASE + '/js/components/seasonRatings.js',
+  BASE + '/js/utils/scoring.js',
 ];
 
 // Install — cache alle statiske filer

@@ -2,7 +2,7 @@
   "name": "Mediehylden",
   "short_name": "Mediehylden",
   "description": "Din personlige mediesamling",
-  "start_url": "/",
+  "start_url": ".",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#080810",
