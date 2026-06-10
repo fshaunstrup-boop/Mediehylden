@@ -1,5 +1,5 @@
 // Service Worker — cacher app-shell for offline-brug
-const CACHE_NAME = 'mediehylden-v16';
+const CACHE_NAME = 'mediehylden-v19';
 
 // Udled base-sti automatisk (virker både lokalt og på GitHub Pages)
 const BASE = self.location.pathname.replace(/\/sw\.js$/, '');
