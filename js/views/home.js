@@ -1,5 +1,5 @@
 import { CATEGORIES }  from '../categories.js';
-import { getStats }    from '../db.js';
+import { getStats, exportAllItems } from '../db.js';
 import { navigate }    from '../router.js';
 
 export async function renderHome({ setTitle, setBack, setActions }) {
@@ -52,5 +52,23 @@ export async function renderHome({ setTitle, setBack, setActions }) {
     grid.appendChild(card);
   }
 
+    // ── Eksport ────────────────────────────────────────────
+  const backupSection = document.createElement('div');
+  backupSection.className = 'backup-section';
+  backupSection.innerHTML = `
+    <div class="section-title">Data</div>
+    <div class="backup-row">
+      <button class="btn btn-secondary btn-sm" id="btn-export">⬇️ Eksportér data</button>
+    </div>
+  `;
+  page.appendChild(backupSection);
+
+  page.querySelector('#btn-export').addEventListener('click', async () => {
+    try {
+      await exportAllItems();
+    } catch { alert('Eksport fejlede'); }
+  });
+
   main.replaceChildren(page);
+}
 }
