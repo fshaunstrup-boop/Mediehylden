@@ -13,7 +13,6 @@ export async function renderHome({ setTitle, setBack, setActions }) {
   const page = document.createElement('div');
   page.className = 'page';
 
-  // Hilsen + samlet tæller
   const totalText = stats.total === 0
     ? 'Ingen medier endnu — tilføj noget!'
     : `${stats.total} ${stats.total === 1 ? 'medie' : 'medier'} i din samling`;
@@ -29,16 +28,17 @@ export async function renderHome({ setTitle, setBack, setActions }) {
     </div>
     <div class="section-title">Kategorier</div>
     <div class="category-grid" id="cat-grid"></div>
+    <div style="margin-top:32px;padding-bottom:16px;">
+      <button id="btn-export" style="width:100%;padding:14px;background:#1e1e2e;border:1px solid #333;border-radius:12px;color:#fff;font-size:15px;cursor:pointer;">⬇️ Eksportér data</button>
+    </div>
   `;
 
   const grid = page.querySelector('#cat-grid');
-
   for (const cat of CATEGORIES) {
-    const count  = stats.byCategory[cat.id] ?? 0;
-    const card   = document.createElement('div');
+    const count = stats.byCategory[cat.id] ?? 0;
+    const card  = document.createElement('div');
     card.className = 'category-card';
     card.style.setProperty('--cat-color', cat.color);
-
     card.innerHTML = `
       <div class="category-card-icon">${cat.icon}</div>
       <div class="category-card-body">
@@ -47,28 +47,14 @@ export async function renderHome({ setTitle, setBack, setActions }) {
         <div class="category-card-stats">${count === 1 ? '1 medie' : `${count} medier`}</div>
       </div>
     `;
-
     card.addEventListener('click', () => navigate(`collection/${cat.id}`));
     grid.appendChild(card);
   }
 
-    // ── Eksport ────────────────────────────────────────────
-  const backupSection = document.createElement('div');
-  backupSection.className = 'backup-section';
-  backupSection.innerHTML = `
-    <div class="section-title">Data</div>
-    <div class="backup-row">
-      <button class="btn btn-secondary btn-sm" id="btn-export">⬇️ Eksportér data</button>
-    </div>
-  `;
-  page.appendChild(backupSection);
-
   page.querySelector('#btn-export').addEventListener('click', async () => {
-    try {
-      await exportAllItems();
-    } catch { alert('Eksport fejlede'); }
+    try { await exportAllItems(); }
+    catch { alert('Eksport fejlede'); }
   });
 
   main.replaceChildren(page);
-}
 }
