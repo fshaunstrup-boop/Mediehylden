@@ -1,5 +1,5 @@
 import { CATEGORIES }  from '../categories.js';
-import { getStats, exportAllItems } from '../db.js';
+import { getStats, getAllItems } from '../db.js';
 import { navigate }    from '../router.js';
 
 export async function renderHome({ setTitle, setBack, setActions }) {
@@ -9,17 +9,13 @@ export async function renderHome({ setTitle, setBack, setActions }) {
 
   const stats = await getStats();
   const main  = document.getElementById('app-main');
-
-  const page = document.createElement('div');
+  const page  = document.createElement('div');
   page.className = 'page';
 
   const totalText = stats.total === 0
     ? 'Ingen medier endnu — tilføj noget!'
     : `${stats.total} ${stats.total === 1 ? 'medie' : 'medier'} i din samling`;
-
-  const avgText = stats.avgRating
-    ? ` · Gns. ★ ${stats.avgRating}`
-    : '';
+  const avgText = stats.avgRating ? ` · Gns. ★ ${stats.avgRating}` : '';
 
   page.innerHTML = `
     <div class="home-greeting">
@@ -52,8 +48,17 @@ export async function renderHome({ setTitle, setBack, setActions }) {
   }
 
   page.querySelector('#btn-export').addEventListener('click', async () => {
-    try { await exportAllItems(); }
-    catch { alert('Eksport fejlede'); }
+    try {
+      const all  = await getAllItems();
+      const json = JSON.stringify({ version: 1, exported: Date.now(), items: all }, null, 2);
+      const blob = new Blob([json], { type: 'application/json' });
+      const url  = URL.createObjectURL(blob);
+      const a    = document.createElement('a');
+      a.href     = url;
+      a.download = `mediehylden-backup-${new Date().toISOString().slice(0,10)}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch { alert('Eksport fejlede'); }
   });
 
   main.replaceChildren(page);
